@@ -9,7 +9,7 @@
 
 var ApplicationConfiguration = (function() {
   // Init module configuration options
-  var applicationModuleName = 'Iraa';
+  var applicationModuleName = 'soulmate';
   var applicationModuleVendorDependencies = [
     'ionic', 'config', 'ngCordova'
   ];
@@ -44,10 +44,10 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function($ion
       StatusBar.styleDefault();
     }
   });
-})
+});
 
-.config(function($stateProvider, $urlRouterProvider) {
-  /*$stateProvider
+/*angular.module(ApplicationConfiguration.applicationModuleName).config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
   
     .state('app', {
       url: '/app',
@@ -94,6 +94,6 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function($ion
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
-  */
-});
+  
+})*/;
 
