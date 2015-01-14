@@ -11,7 +11,7 @@ var ApplicationConfiguration = (function() {
   // Init module configuration options
   var applicationModuleName = 'soulmate';
   var applicationModuleVendorDependencies = [
-    'ionic', 'config', 'ngCordova'
+    'ionic', 'config', 'ngCordova', 'LocalStorageModule'
   ];
 
   // Add a new vertical module
@@ -32,6 +32,9 @@ var ApplicationConfiguration = (function() {
 
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
+angular.module(ApplicationConfiguration.applicationModuleName).config(function (localStorageServiceProvider) {
+  localStorageServiceProvider.setPrefix('soulmate');
+});
 
 angular.module(ApplicationConfiguration.applicationModuleName).run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

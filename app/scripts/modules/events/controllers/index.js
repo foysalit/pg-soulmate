@@ -1,6 +1,6 @@
 'use strict';
 angular.module('events').controller('EventsController', 
-function($rootScope, $scope, $stateParams, $state) {
+function($rootScope, $scope, $stateParams, $state, EventsFactory) {
 	if ($rootScope.authentication) {
 		$state.go('login');
 	}
@@ -10,11 +10,8 @@ function($rootScope, $scope, $stateParams, $state) {
 	self.entries = getAll();
 
 	function getAll () {
-		var events = [
-			{id: 1, title: 'one'},
-			{id: 2, title: 'two'}
-		];
-
+		var events = EventsFactory.getAll();
+		console.log(events);
 		return events;
 	}
 });

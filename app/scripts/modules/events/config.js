@@ -21,7 +21,7 @@ angular.module('events').config(function($stateProvider) {
 			views: {
 			    'content': {
 			    	templateUrl: 'templates/modules/events/create.html',
-			    	controller: 'EventsCreateController as eventsCreator'
+			    	controller: 'EventsCreateController as eventCreator'
 				}
 			}
 	    }).
