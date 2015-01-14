@@ -1,5 +1,7 @@
 'use strict';
 angular.module('events').controller('EventsCreateController', 
-function($scope, $stateParams) {
-	console.log('events');
+function($rootScope, $scope, $stateParams, $state) {
+	if (!$rootScope.authentication) {
+		$state.go('authentication');
+	}
 });
