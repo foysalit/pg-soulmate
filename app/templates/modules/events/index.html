@@ -1,10 +1,25 @@
 <ion-view title="Events">
-  <ion-content class="has-header">
-    <ion-list>
-      <ion-item class="item-icon-right" ng-repeat="entry in events.entries" href="#/events/{{entry.id}}">
-        {{entry.title}}
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+	<ion-nav-buttons side="left">
+		<button 
+			menu-toggle="left" 
+			class="button button-icon icon ion-navicon">
+		</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<a
+			href="/#/events/create"
+			class="button icon ion-navicon ion-plus">
+		</a>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<ion-list>
+			<ion-item 
+				class="item-icon-right" 
+				ng-repeat="entry in events.entries" 
+				href="#/events/{{entry.id}}">
+				{{entry.title}}
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
+	</ion-content>
 </ion-view>

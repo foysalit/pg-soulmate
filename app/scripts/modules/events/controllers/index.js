@@ -2,7 +2,7 @@
 angular.module('events').controller('EventsController', 
 function($rootScope, $scope, $stateParams, $state) {
 	if ($rootScope.authentication) {
-		$state.go('authentication');
+		$state.go('login');
 	}
 
 	var self = this;

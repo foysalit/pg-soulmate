@@ -32,6 +32,7 @@ var ApplicationConfiguration = (function() {
 
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
+
 angular.module(ApplicationConfiguration.applicationModuleName).run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,9 +46,3 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function($ion
     }
   });
 });
-
-/*angular.module(ApplicationConfiguration.applicationModuleName).config(function($stateProvider, $urlRouterProvider) {
-  
-  
-});*/
-
