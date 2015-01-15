@@ -22,6 +22,7 @@
     "angular": false,
     "cordova": false,
     "StatusBar": false,
-    "ApplicationConfiguration": false
+    "ApplicationConfiguration": false,
+    "_": false
   }
 }

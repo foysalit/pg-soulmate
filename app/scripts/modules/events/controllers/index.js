@@ -7,11 +7,14 @@ function($rootScope, $scope, $stateParams, $state, EventsFactory) {
 
 	var self = this;
 
-	self.entries = getAll();
+	getAll();
 
 	function getAll () {
-		var events = EventsFactory.getAll();
-		console.log(events);
-		return events;
+		EventsFactory.getAll().then(function (events) {
+			self.entries = events;
+			console.log(self.entries);
+		}, function (err) {
+			console.log("error getting events", err);
+		});
 	}
 });

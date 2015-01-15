@@ -1,16 +1,20 @@
 'use strict';
 angular.module('events').controller('EventController', 
-function($rootScope, $scope, $stateParams, $state) {
+function($rootScope, $scope, $stateParams, $state, EventsFactory) {
 	if ($rootScope.authentication) {
 		$state.go('login');
 	}
 
 	var self = this;
 
-	self.data = get();
+	get();
 	
 	function get () {
-		var event = {id: $stateParams.eventId, title: 'one'};
+		var event = EventsFactory.get({id: $stateParams.eventId}).then(function (data) {
+			self.data = data;
+		}, function (err) {
+			console.log('error', err);
+		});
 
 		return event;
 	}

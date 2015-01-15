@@ -1,4 +1,10 @@
 <ion-view title="{{event.data.title}}">
+	<ion-nav-buttons side="right">
+		<button
+			ng-click="event.remove()"
+			class="button icon ion-navicon ion-close">
+		</button>
+	</ion-nav-buttons>
 	<ion-content class="has-header">
 		<h1>{{ event.data.title }}</h1>
 	</ion-content>

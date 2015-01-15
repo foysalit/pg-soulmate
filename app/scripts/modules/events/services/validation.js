@@ -9,7 +9,7 @@ angular.module('events').factory('EventsValidator', function () {
 			if (angular.isUndefined(data.title))
 				return false;
 
-			return true
+			return true;
 		}
 	};
 });
