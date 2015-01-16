@@ -33,6 +33,7 @@
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="lib/lodash/dist/lodash.compat.js"></script>
+    <script src="lib/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -45,13 +46,18 @@
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/authentication/controllers.js -->
+    <!-- build:js scripts/core.js -->
+    <script src="scripts/modules/core/config.js"></script>
+    <script src="scripts/modules/core/services/storage-sync.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/authentication.js -->
     <script src="scripts/modules/authentication/config.js"></script>
     <script src="scripts/modules/authentication/controllers/signup.js"></script>
     <script src="scripts/modules/authentication/controllers/login.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/events/controllers.js -->
+    <!-- build:js scripts/events.js -->
     <script src="scripts/modules/events/config.js"></script>
     <script src="scripts/modules/events/services/validation.js"></script>
     <script src="scripts/modules/events/services/local-storage.js"></script>

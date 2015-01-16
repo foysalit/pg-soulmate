@@ -25,6 +25,15 @@ angular.module('events').config(function($stateProvider) {
 				}
 			}
 	    }).
+		state('events.edit', {
+			url: '/edit',
+			views: {
+			    'content': {
+			    	templateUrl: 'templates/modules/events/edit.html',
+			    	controller: 'EventsCreateController as eventCreator'
+				}
+			}
+	    }).
 		state('events.single', {
 			url: '/:eventId',
 			views: {

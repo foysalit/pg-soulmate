@@ -1,64 +1,91 @@
 'use strict';
 
-angular.module('events').factory('EventsFactory', function ($q, ENV, localStorageService, EventsValidator, $http) {
-	var apiEndpoint = ENV.apiEndpoint + 'events';
+(function(){
+	angular.module('events').factory('EventsFactory', EventsFactory);
 
-	return {
-		getAll: function () {
-			var lastSynced = localStorageService.get('events.synced'),
-				events = localStorageService.get('events'),
-				deferred = $q.defer(),
-				now = new Date();
+	function EventsFactory ($q, ENV, localStorageService, EventsValidator, $http, StorageSync) {
+		var apiEndpoint = ENV.apiEndpoint + 'events';
 
-			if (lastSynced === null || events === null){
-				$http.get(apiEndpoint +'.json').success(function (data) {
-					localStorageService.set('events', angular.toJson(data));
-					localStorageService.set('events.synced', new Date());
-					deferred.resolve(data);
+		return {
+			getAll: function (forceReload) {
+				var key = 'events',
+					lastSynced = StorageSync.getLastSynced(key),
+					events = localStorageService.get(key),
+					deferred = $q.defer(),
+					forceReload = forceReload || false;
+
+				console.log(lastSynced, lastSynced > 5, events === null, forceReload);
+
+				if (lastSynced > 5 || events === null || forceReload){
+					$http.get(apiEndpoint +'.json').success(function (data) {
+						localStorageService.set(key, angular.toJson(data));
+						StorageSync.updateLastSynced(key);
+						deferred.resolve(data);
+					}).error(function (err) {
+						deferred.reject(err);
+					});	
+				} else {
+					deferred.resolve(events);
+				}
+
+				return deferred.promise;
+			},
+
+			get: function (id, forceReload) {
+				var deferred = $q.defer(),
+					key = 'events.'+ id,
+					lastSynced = StorageSync.getLastSynced(key),
+					localEvent = localStorageService.get(key);
+
+				if (lastSynced > 1 || localEvent === null) {
+					$http.get(apiEndpoint +'/'+ id +'.json').success(function (data) {
+						localStorageService.set(key, data);
+						StorageSync.updateLastSynced(key);
+						deferred.resolve(data);
+					});
+				} else {
+					deferred.resolve(localEvent);
+				}
+
+				return deferred.promise;
+			},
+
+			create: function (event) {
+				var deferred = $q.defer();
+
+				if (!EventsValidator.create(event)) {
+					deferred.reject('Event Not valid');
+				} else {
+					$http.post(apiEndpoint +'.json', {event: event}).success(function (response) {
+						deferred.resolve(response);
+						StorageSync.deleteLastSynced('events');
+					}).error(function (err) {
+						deferred.reject(err);
+					})
+				}
+
+				return deferred.promise;
+			},
+
+			remove: function (id) {
+				var deferred = $q.defer(),
+					key = 'events.'+ id,
+					localEvent = localStorageService.get(key);
+
+				$http.delete(apiEndpoint +'/'+ id +'.json').success(function () {
+					deferred.resolve(true);
+
+					if (localEvent) {
+						localStorageService.remove(key);
+						StorageSync.deleteLastSynced(key);
+						StorageSync.deleteLastSynced('events');
+					}
 				}).error(function (err) {
-					deferred.reject(err);
-				});	
-			} else if () {
-				deferred.resolve(events);
+					deferred.resolve(false);
+				});
+
+				return deferred.promise;
 			}
-
-			return deferred.promise;
-		},
-
-		get: function (query) {
-			var deferred = $q.defer();
-
-			events.then(function(events) {
-				var event = _.find(events, query);
-				
-				deferred.resolve(event);	
-			}, function(){
-				deferred.reject('Events Not Found');
-			});
-
-			return deferred.promise;
-		},
-
-		create: function (event) {
-			var deferred = $q.defer();
-
-			if (!EventsValidator.create(event)) {
-				deferred.reject('Event Not valid');
-			} else {
-
-				var events = localStorageService.get('events');
-
-				if (!events) 
-					events = [];
-				else
-					events = JSON.parse(events);
-
-				events.push(event);
-				localStorageService.set('events', angular.toJson(events));
-				deferred.resolve(event);
-			}
-
-			return deferred.promise;
-		}
-	};
-});
+		};
+	}
+})();
