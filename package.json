@@ -61,6 +61,7 @@
     "org.apache.cordova.dialogs",
     "org.apache.cordova.vibration",
     "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
-    "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git"
+    "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+    "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker"
   ]
 }

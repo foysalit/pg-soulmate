@@ -12,7 +12,8 @@
 		</a>
 	</ion-nav-buttons>
 	<ion-content class="has-header">
-		<ion-list>
+		<ion-list type="card">
+			<!-- 
 			<ion-item 
 				class="item-icon-right" 
 				ng-repeat="entry in events.entries" 
@@ -20,6 +21,35 @@
 				{{entry.title}}
 				<i class="icon ion-chevron-right icon-accessory"></i>
 			</ion-item>
+			-->
+			<div class="list cart"
+				ng-repeat="entry in events.entries">
+				<div class="item item-avatar">
+					<img src="http://placekitten.com/30/30">
+					<h2>{{ entry.title }}</h2>
+					<p>{{ entry.created_at | date:'medium' }}</p>
+				</div>
+
+				<div class="item item-body">
+					<img class="full-image" src="http://placekitten.com/150/200">
+					<p>{{ entry.content }}</p>
+				</div>
+
+				<div class="item tabs tabs-icon-only">
+					<a class="tab-item" href="#/events/{{ entry.id }}">
+						<i class="icon ion-eye"></i>
+					</a>
+					<a class="tab-item" href="#">
+						<i class="icon ion-chatbox"></i>
+						Comment
+					</a>
+					<a class="tab-item" href="#">
+						<i class="icon ion-share"></i>
+						Share
+					</a>
+				</div>
+
+			</div>
 		</ion-list>
 	</ion-content>
 </ion-view>

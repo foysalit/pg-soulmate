@@ -2,30 +2,30 @@
     <ion-content class="has-header">
         <form name="eventCreateForm" ng-submit="eventCreator.create()" novalidate>
             <ion-list>
-                <label class="item item-input" name="email">
+                <label class="item item-input" name="title">
                     <input 
                         ng-model="eventCreator.data.title" 
                         name="title" 
                         type="text"
                         placeholder="Title">
                 </label>
-                <label class="item item-input" name="password">
+                <label class="item item-input" name="content">
                     <textarea
                         row="10"
-                        ng-model="eventCreator.data.details"
+                        ng-model="eventCreator.data.content"
                         placeholder="Details....">
                     </textarea>
                 </label>
+
+                <label for="date" class="item item-input">
+                    <input type="text" placeholder="Select Date" ng-focus="eventCreator.showDatePicker()"/>
+                </label>
             </ion-list>
     
-            <ion-list ng-show="loginForm.$submitted || loginForm.email.$touched">
+            <ion-list ng-show="loginForm.$submitted || loginForm.title.$touched">
                 <label 
-                    ng-show="loginForm.email.$error.email">
-                    Insert a valid Email address
-                </label>
-                <label 
-                    ng-show="loginForm.email.$error.required">
-                    Please insert an email address
+                    ng-show="loginForm.title.$error.required">
+                    Please insert an title address
                 </label>
             </ion-list>
 

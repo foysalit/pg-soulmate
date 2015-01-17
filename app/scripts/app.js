@@ -11,7 +11,8 @@ var ApplicationConfiguration = (function() {
   // Init module configuration options
   var applicationModuleName = 'soulmate';
   var applicationModuleVendorDependencies = [
-    'ionic', 'config', 'ngCordova', 'LocalStorageModule'
+    'ionic', 'config', 'ngCordova', 'LocalStorageModule',
+    'angular-datepicker'
   ];
 
   // Add a new vertical module
