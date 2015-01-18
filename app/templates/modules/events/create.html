@@ -1,14 +1,36 @@
 <ion-view title="Create Event">
-    <ion-content class="has-header" flow-init flow-name="eventCreator.data.pictures">
-        <form name="eventCreateForm" ng-submit="eventCreator.create()" novalidate>
+    <ion-content class="has-header">
+        <form 
+            name="eventCreateForm" 
+            ng-submit="eventCreator.create()" 
+            flow-init="eventCreator.flowUploadConfig" 
+            flow-name="eventCreator.data.pictures"
+            novalidate>
+            
+            <div ng-show="eventCreator.submitted || eventCreateForm.$touched">
+                <ion-list type="list-inset">
+                    <label 
+                        class="item assertive"
+                        ng-show="eventCreateForm.title.$error.required">
+                        Please insert an title address
+                    </label>
+                </ion-list>
+                
+                <div class="spacer padding-vertical">
+                    
+                </div>
+            </div>
+
             <ion-list>
                 <label class="item item-input" name="title">
                     <input 
                         ng-model="eventCreator.data.title" 
                         name="title" 
                         type="text"
-                        placeholder="Title">
+                        placeholder="Title"
+                        required>
                 </label>
+
                 <label class="item item-input" name="content">
                     <textarea
                         row="10"
@@ -45,15 +67,8 @@
                     </div>
                 </div>
             </ion-list>
-    
-            <ion-list ng-show="loginForm.$submitted || loginForm.title.$touched">
-                <label 
-                    ng-show="loginForm.title.$error.required">
-                    Please insert an title address
-                </label>
-            </ion-list>
 
-            <div class="spacer" style="height: 20px;"></div>
+            <div class="spacer" style="height: 10px;"></div>
 
             <div class="padding">
                 <button class="button button-positive button-block">

@@ -6,7 +6,7 @@ angular.module('events').factory('EventsValidator', function () {
 			if (!angular.isObject(data))
 				return false;
 
-			if (angular.isUndefined(data.title))
+			if (_.isUndefined(data.title) || _.isEmpty(data.title))
 				return false;
 
 			return true;

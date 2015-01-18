@@ -12,16 +12,25 @@
 
 		self.create = create;
 		self.showDatePicker = showDatePicker;
+
 		self.data = {};
+		self.submitted = false;
+		self.hasErrors = false;
+		self.flowUploadConfig = {
+			target: EventsFactory.apiEndpoint,
+			testChunks: false
+		};
 
 		function create () {
-			console.log(self.data);
-			return;
+			//return console.log(self.data);
+			self.submitted = true;
+			
 			EventsFactory.create(self.data).then(function (event) {
 				console.log('done');
 				$state.go('events.all');
 			}, function(error) {
 				console.log(error);
+				self.hasErrors = true;
 			});
 		}
 

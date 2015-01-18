@@ -7,6 +7,7 @@
 		var apiEndpoint = ENV.apiEndpoint + 'events';
 
 		return {
+			apiEndpoint: apiEndpoint,
 			getAll: function (forceReload) {
 				var key = 'events',
 					lastSynced = StorageSync.getLastSynced(key),
