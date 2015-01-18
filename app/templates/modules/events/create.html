@@ -1,5 +1,5 @@
 <ion-view title="Create Event">
-    <ion-content class="has-header">
+    <ion-content class="has-header" flow-init flow-name="eventCreator.data.pictures">
         <form name="eventCreateForm" ng-submit="eventCreator.create()" novalidate>
             <ion-list>
                 <label class="item item-input" name="title">
@@ -21,6 +21,30 @@
                     <input type="text" placeholder="Select Date" ng-focus="eventCreator.showDatePicker()"/>
                 </label>
             </ion-list>
+
+            <div class="spacer" style="height: 10px;"></div>
+            <div class="padding">
+                <button 
+                    type="button" 
+                    flow-btn 
+                    class="button button-block button-royal">
+                    <i class="icon ion-images"></i>
+                    Add Pictures
+                </button>
+            </div>
+
+            <ion-list 
+                type="card" 
+                class="uploaded-pictures" 
+                ng-if="eventCreator.data.pictures.files.length">
+                <div class="card"
+                    ng-repeat="file in eventCreator.data.pictures.files">
+                    <img flow-img="file" class="image">
+                    <div class="item item-divider">
+                        {{ file.name }}
+                    </div>
+                </div>
+            </ion-list>
     
             <ion-list ng-show="loginForm.$submitted || loginForm.title.$touched">
                 <label 
@@ -32,8 +56,7 @@
             <div class="spacer" style="height: 20px;"></div>
 
             <div class="padding">
-                <button 
-                    class="button button-positive button-block">
+                <button class="button button-positive button-block">
                     Save
                 </button>
             </div>

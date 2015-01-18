@@ -15,6 +15,8 @@
 		self.data = {};
 
 		function create () {
+			console.log(self.data);
+			return;
 			EventsFactory.create(self.data).then(function (event) {
 				console.log('done');
 				$state.go('events.all');
