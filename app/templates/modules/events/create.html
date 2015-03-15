@@ -1,5 +1,5 @@
 <ion-view title="Create Event">
-    <ion-content class="has-header">
+    <ion-content class="has-header" id="event_ceate_page">
         <form 
             name="eventCreateForm" 
             ng-submit="eventCreator.create()" 
@@ -39,9 +39,13 @@
                     </textarea>
                 </label>
 
-                <label for="date" class="item item-input">
-                    <input type="text" placeholder="Select Date" ng-focus="eventCreator.showDatePicker()"/>
-                </label>
+                <div for="date" class="item item-input">
+                    <input 
+                        type="text" 
+                        placeholder="Select Date" 
+                        pick-a-date-options="eventCreator.datePickerOptions"
+                        pick-a-time="curDate"/>
+                </div>
             </ion-list>
 
             <div class="spacer" style="height: 10px;"></div>
